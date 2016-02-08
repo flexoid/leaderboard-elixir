@@ -10,7 +10,8 @@ defmodule Leaderboard do
       # Start the endpoint when the application starts
       supervisor(Leaderboard.Endpoint, []),
       # Here you could define other workers and supervisors as children
-      # worker(Leaderboard.Worker, [arg1, arg2, arg3]),
+      worker(Redix, [Application.get_env(:leaderboard, :redis_url),
+        [name: :redix]]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

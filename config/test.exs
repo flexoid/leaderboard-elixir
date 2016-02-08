@@ -8,3 +8,5 @@ config :leaderboard, Leaderboard.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :leaderboard, :redis_url, "redis://localhost:6379/12"

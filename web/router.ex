@@ -19,8 +19,9 @@ defmodule Leaderboard.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Leaderboard do
-  #   pipe_through :api
-  # end
+  scope "/api", Leaderboard.Api do
+    pipe_through :api
+
+    post "/records", RecordController, :update
+  end
 end
