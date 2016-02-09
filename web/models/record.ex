@@ -5,21 +5,28 @@ defmodule Leaderboard.Record do
   @primary_key false
 
   schema "record" do
+    field :project_id
+    field :event_id
+
     field :user_id
-    field :value
     field :name
     field :public_id
+    field :value, :integer
     field :level, :integer
     field :private_data
     field :public_data
   end
 
-  @required_fields ~w()
+  @required_fields ~w(project_id event_id)
   @optional_fields ~w(user_id value name public_id level private_data public_data)
 
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def saving_changeset(model, params \\ :empty) do
+    changeset(model, params)
     |> assign_user_id()
   end
 

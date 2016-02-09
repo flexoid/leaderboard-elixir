@@ -19,9 +19,10 @@ defmodule Leaderboard.Router do
     get "/", PageController, :index
   end
 
-  scope "/api", Leaderboard.Api do
+  scope "/api/projects/:project_id/events/:event_id", Leaderboard.Api do
     pipe_through :api
 
+    get "/records/:user_id", RecordController, :show
     post "/records", RecordController, :update
   end
 end
